@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as XLSX from "xlsx";
-import PDFDocument from "pdfkit";
 import { getJobs } from "@/lib/store";
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const PDFDocument = require("pdfkit") as typeof import("pdfkit");
 
 export const runtime = "nodejs";
 

@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   serverExternalPackages: [
     "playwright",
     "pdf-parse",
+    "pdfkit",
     "pino",
     "pino-pretty",
     "openai",
