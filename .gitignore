@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# job agent data (sessions, cv cache, jobs)
+/data/
+
+# claude / AI assistant config (not for public repos)
+CLAUDE.md
+AGENTS.md

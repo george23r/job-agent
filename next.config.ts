@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: [
+    "playwright",
+    "pdf-parse",
+    "pino",
+    "pino-pretty",
+    "openai",
+    "p-limit",
+    "p-retry",
+    "nanoid",
+    "mammoth",
+    "xlsx",
+  ],
 };
 
 export default nextConfig;
