@@ -1,6 +1,6 @@
 # Job Agent
 
-AI-powered job search platform for the Colombian market. Scrapes LinkedIn, Indeed, Computrabajo and Magneto simultaneously, matches results against your CV profile, and lets you export everything to **Excel** or **PDF** in one click.
+Plataforma de búsqueda de empleo potenciada con IA, diseñada para el mercado colombiano. Busca en LinkedIn, Indeed, Computrabajo y Magneto simultáneamente, compara los resultados con tu perfil de CV y te permite exportar todo a **Excel** o **PDF** con un solo clic.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
@@ -9,46 +9,46 @@ AI-powered job search platform for the Colombian market. Scrapes LinkedIn, Indee
 
 ---
 
-## Features
+## Funcionalidades
 
-- **Con IA** — Upload your CV and GPT-4o-mini analyzes your profile, extracts search terms, and scores every job posting against your skills (0–100%).
-- **Sin IA** — Upload your CV and the system extracts your role and city via regex — no API key needed. Search starts automatically.
-- **4 sources scraped in parallel** — LinkedIn, Indeed (Cloudflare bypass), Computrabajo, Magneto.
-- **Smart filters** — Filter by source, modality (remote / hybrid / on-site) and city.
-- **Export to Excel** — Two sheets: full job list with column widths + summary statistics.
-- **Export to PDF** — Branded PDF with match score badges, source color coding and pagination.
-- **Search history** — Last 5 Sin-IA searches persisted in localStorage.
-- **Auto-search** — 3-second debounce after typing in Sin IA mode; triggers search automatically on CV upload.
-- **Scheduled searches** — Background scheduler runs every N hours (configurable).
+- **Con IA** — Sube tu CV y GPT-4o-mini analiza tu perfil, extrae términos de búsqueda y le asigna un puntaje a cada oferta laboral según tus habilidades (0–100%).
+- **Sin IA** — Sube tu CV y el sistema extrae tu cargo y ciudad mediante expresiones regulares — sin necesidad de clave API. La búsqueda inicia automáticamente.
+- **4 fuentes en paralelo** — LinkedIn, Indeed (con bypass de Cloudflare), Computrabajo y Magneto.
+- **Filtros inteligentes** — Filtra por fuente, modalidad (remoto / híbrido / presencial) y ciudad.
+- **Exportar a Excel** — Dos hojas: listado completo de ofertas con anchos de columna + estadísticas resumidas.
+- **Exportar a PDF** — PDF con diseño propio, insignias de puntaje de compatibilidad, colores por fuente y paginación.
+- **Historial de búsquedas** — Últimas 5 búsquedas en modo Sin IA guardadas en localStorage.
+- **Búsqueda automática** — Espera 3 segundos tras escribir en modo Sin IA; también se activa automáticamente al subir el CV.
+- **Búsquedas programadas** — Un scheduler en segundo plano ejecuta búsquedas cada N horas (configurable).
 
 ---
 
-## Tech Stack
+## Stack tecnológico
 
-| Layer | Technology |
+| Capa | Tecnología |
 | --- | --- |
 | Framework | Next.js 16 (App Router, Turbopack) |
-| Language | TypeScript 5 |
-| Styling | Tailwind CSS v4 + shadcn/ui |
-| Animations | Framer Motion |
-| Scraping | Playwright (persistent Chrome context) |
-| AI | OpenAI GPT-4o-mini via official SDK |
-| Excel export | SheetJS (xlsx) |
-| PDF export | PDFKit |
-| CV parsing | pdf-parse + mammoth (DOCX) |
-| Logging | Pino |
+| Lenguaje | TypeScript 5 |
+| Estilos | Tailwind CSS v4 + shadcn/ui |
+| Animaciones | Framer Motion |
+| Scraping | Playwright (contexto Chrome persistente) |
+| IA | OpenAI GPT-4o-mini vía SDK oficial |
+| Exportar a Excel | SheetJS (xlsx) |
+| Exportar a PDF | PDFKit |
+| Parseo de CV | pdf-parse + mammoth (DOCX) |
+| Logs | Pino |
 
 ---
 
-## Getting Started
+## Cómo empezar
 
-### Prerequisites
+### Requisitos previos
 
 - Node.js 18+
-- Google Chrome installed (system Chrome, not Chromium)
-- OpenAI API key (only required for **Con IA** mode)
+- Google Chrome instalado (Chrome del sistema, no Chromium)
+- Clave de API de OpenAI (solo requerida para el modo **Con IA**)
 
-### 1. Clone and install
+### 1. Clonar e instalar
 
 ```bash
 git clone https://github.com/george23r/job-agent.git
@@ -56,107 +56,107 @@ cd job-agent
 npm install
 ```
 
-### 2. Configure environment
+### 2. Configurar el entorno
 
-Create `.env.local` with the following variables:
+Crea un archivo `.env.local` con las siguientes variables:
 
 ```env
-# Required for Con IA mode
+# Requerido para el modo Con IA
 OPENAI_API_KEY=sk-...
 OPENAI_MODEL=gpt-4o-mini
 
-# Path to Chrome user data (must have active sessions for job sites)
-CHROME_USER_DATA_DIR=C:\Users\YourName\AppData\Local\Google\Chrome\User Data
+# Ruta al perfil de Chrome con sesiones activas en los sitios de empleo
+CHROME_USER_DATA_DIR=C:\Users\TuNombre\AppData\Local\Google\Chrome\User Data
 
-# Path to Chrome executable (avoids Cloudflare bot detection)
+# Ruta al ejecutable de Chrome (evita la detección de bots de Cloudflare)
 CHROME_EXECUTABLE_PATH=C:\Program Files\Google\Chrome\Application\chrome.exe
 
-# Scheduler (optional)
+# Scheduler (opcional)
 ENABLE_SCHEDULER=true
 SEARCH_INTERVAL_HOURS=6
 LOG_LEVEL=info
 ```
 
-### 3. Log in to job sites
+### 3. Iniciar sesión en los sitios de empleo
 
-Open Chrome with the profile configured in `CHROME_USER_DATA_DIR` and log in to:
+Abre Chrome con el perfil configurado en `CHROME_USER_DATA_DIR` e inicia sesión en:
 
 - [linkedin.com](https://www.linkedin.com)
 - [co.indeed.com](https://co.indeed.com)
 - [computrabajo.com.co](https://www.computrabajo.com.co)
 - [magneto365.com](https://magneto365.com)
 
-> Close Chrome before starting the app — Playwright needs exclusive access to the profile.
+> Cierra Chrome antes de iniciar la app — Playwright necesita acceso exclusivo al perfil.
 
-### 4. Run the dev server
+### 4. Iniciar el servidor de desarrollo
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Abre [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## Usage
+## Uso
 
-### Con IA (with AI)
+### Con IA
 
-1. Switch to **Con IA** in the top bar.
-2. Upload your CV (PDF or DOCX, max 10 MB).
-3. GPT-4o-mini extracts your profile and generates search terms.
-4. Click **Buscar vacantes** — results appear from all 4 sources.
-5. Filter by source, modality or city.
-6. Click **Excel** or **PDF** to export.
+1. Cambia a **Con IA** en la barra superior.
+2. Sube tu CV (PDF o DOCX, máximo 10 MB).
+3. GPT-4o-mini extrae tu perfil y genera términos de búsqueda.
+4. Haz clic en **Buscar vacantes** — los resultados aparecerán de las 4 fuentes.
+5. Filtra por fuente, modalidad o ciudad.
+6. Haz clic en **Excel** o **PDF** para exportar.
 
-### Sin IA (without AI)
+### Sin IA
 
-1. Switch to **Sin IA** in the top bar.
-2. Upload your CV — role and city are extracted automatically via regex, no API key needed.
-3. Search starts automatically within 1 second of upload.
-4. Or type the role manually — auto-search fires after 3 seconds.
-5. Use quick-pick role chips for common Colombian IT roles.
+1. Cambia a **Sin IA** en la barra superior.
+2. Sube tu CV — el cargo y la ciudad se extraen automáticamente mediante expresiones regulares, sin necesidad de clave API.
+3. La búsqueda inicia automáticamente dentro del primer segundo tras subir el archivo.
+4. También puedes escribir el cargo manualmente — la búsqueda automática se activa tras 3 segundos.
+5. Usa los chips de roles comunes para cargos frecuentes en IT colombiano.
 
-### Exporting results
+### Exportar resultados
 
-Once results are loaded, two buttons appear in the top-right:
+Una vez cargados los resultados, aparecen dos botones en la parte superior derecha:
 
-| Button | Output |
+| Botón | Resultado |
 | --- | --- |
-| **Excel** | `.xlsx` with two sheets: full job list + summary statistics |
-| **PDF** | Branded `.pdf` with match score badges, source colors and page numbers |
+| **Excel** | `.xlsx` con dos hojas: listado completo + estadísticas |
+| **PDF** | `.pdf` con insignias de puntaje, colores por fuente y número de página |
 
 ---
 
-## Environment Variables
+## Variables de entorno
 
-| Variable | Description | Required |
+| Variable | Descripción | Requerida |
 | --- | --- | --- |
-| `OPENAI_API_KEY` | OpenAI API key | Con IA only |
-| `OPENAI_MODEL` | Model (default: `gpt-4o-mini`) | No |
-| `CHROME_USER_DATA_DIR` | Chrome profile path with active sessions | Yes |
-| `CHROME_EXECUTABLE_PATH` | Chrome executable path | Recommended |
-| `ENABLE_SCHEDULER` | Auto-search scheduler (`true`/`false`) | No |
-| `SEARCH_INTERVAL_HOURS` | Scheduler interval in hours (default: `6`) | No |
-| `LOG_LEVEL` | Log level: `trace`, `debug`, `info`, `warn`, `error` | No |
+| `OPENAI_API_KEY` | Clave de API de OpenAI | Solo Con IA |
+| `OPENAI_MODEL` | Modelo (por defecto: `gpt-4o-mini`) | No |
+| `CHROME_USER_DATA_DIR` | Ruta al perfil de Chrome con sesiones activas | Sí |
+| `CHROME_EXECUTABLE_PATH` | Ruta al ejecutable de Chrome | Recomendado |
+| `ENABLE_SCHEDULER` | Scheduler automático (`true`/`false`) | No |
+| `SEARCH_INTERVAL_HOURS` | Intervalo del scheduler en horas (por defecto: `6`) | No |
+| `LOG_LEVEL` | Nivel de log: `trace`, `debug`, `info`, `warn`, `error` | No |
 
 ---
 
-## Project Structure
+## Estructura del proyecto
 
 ```text
 src/
 ├── app/
 │   ├── api/
-│   │   ├── cv/          # CV upload & parse endpoints
+│   │   ├── cv/          # Endpoints de carga y parseo de CV
 │   │   ├── jobs/
-│   │   │   └── export/  # Excel + PDF export (GET ?format=xlsx|pdf)
-│   │   └── search/      # Search orchestration endpoint
+│   │   │   └── export/  # Exportar a Excel + PDF (GET ?format=xlsx|pdf)
+│   │   └── search/      # Endpoint de orquestación de búsqueda
 │   ├── layout.tsx
-│   └── page.tsx         # Main UI
+│   └── page.tsx         # UI principal
 ├── components/          # CVUploadZone, JobCard, NoAISearchForm, etc.
 ├── playwright/          # Scrapers: linkedin, indeed, computrabajo, magneto
-├── services/            # cv.ts (AI), cv-noai.ts (regex), openai.ts
+├── services/            # cv.ts (Con IA), cv-noai.ts (regex), openai.ts
 ├── lib/                 # store, scheduler, logger, rate-limit
 ├── types/               # job.ts, cv.ts
 └── utils/               # normalize, dedupe
@@ -164,20 +164,20 @@ src/
 
 ---
 
-## Cloudflare / Indeed Notes
+## Notas sobre Cloudflare / Indeed
 
-Indeed uses Cloudflare bot detection. The scraper bypasses it by using:
+Indeed usa detección de bots de Cloudflare. El scraper lo evita mediante:
 
-- **System Chrome** (real TLS fingerprint) instead of Playwright's bundled Chromium — set `CHROME_EXECUTABLE_PATH`.
-- `--disable-blink-features=AutomationControlled` Chrome flag.
-- `navigator.webdriver` patch and fake plugin list injected via `addInitScript`.
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+- **Chrome del sistema** (huella TLS real) en lugar del Chromium integrado de Playwright — configura `CHROME_EXECUTABLE_PATH`.
+- Flag `--disable-blink-features=AutomationControlled` en Chrome.
+- Patch de `navigator.webdriver` y lista de plugins falsos inyectados vía `addInitScript`.
 
 ---
 
-*Built with Next.js, Playwright, and OpenAI. Designed for the Colombian job market.*
+## Licencia
+
+MIT — ver [LICENSE](LICENSE).
+
+---
+
+*Construido con Next.js, Playwright y OpenAI. Diseñado para el mercado laboral colombiano.*
